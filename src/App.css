@@ -1,38 +1,74 @@
-.App {
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Russo One', monospace;
+  color: #A5C9CA;
+  letter-spacing: 2.5px;
+  font-size: 15px;
+}
+
+#body{
+  background-color: #2D3434;
+}
+
+/*Navbar*/
+
+.nav{
+  animation: nav-anm 2s;
+}
+
+@keyframes nav-anm{
+  0%{
+    opacity: 10%;
+    transform: translateY(100vh);
+  }
+}
+
+/*App.js*/
+
+.div-home{
+  animation: div-home-anm 2s;
   text-align: center;
+  font-size: 25px;
+  margin-top: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@keyframes div-home-anm{
+  0%{
+    opacity: 10%;
+    transform: translateY(100vh);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/*users-div*/
+
+.users-div{
+  border: 1px solid gray;
+  width: 80%;
+  height: 94%;
+  animation: users-div-anm 2s;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes users-div-anm{
+  0%{
+    opacity: 10%;
+    transform: translateY(100vh);
   }
-  to {
-    transform: rotate(360deg);
+}
+
+/*create-users-div*/
+
+.create-users-div{
+  animation: create-users-div-anm 2s;
+}
+
+@keyframes create-users-div-anm{
+  0%{
+    opacity: 10%;
+    transform: translateY(100vh);
   }
 }
