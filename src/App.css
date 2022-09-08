@@ -5,7 +5,7 @@
   font-family: 'Russo One', monospace;
   color: #A5C9CA;
   letter-spacing: 2.5px;
-  font-size: 15px;
+  font-size-adjust: 0.78;
 }
 
 #body{
@@ -45,12 +45,17 @@
 
 .users-div{
   border: 1px solid gray;
-  width: 80%;
-  height: 94%;
+  width: 20rem;
+  height: 17rem;
   animation: users-div-anm 2s;
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 10px;
+}
+
+.users-div:hover{
+  transform: scale(1.1);
+  box-shadow: 10px 10px 10px #3A5C65;
 }
 
 @keyframes users-div-anm{

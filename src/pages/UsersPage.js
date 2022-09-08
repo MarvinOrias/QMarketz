@@ -62,6 +62,11 @@ export default function UsersPage(){
 						icon: 'success',
 						text: `${updateUser.message}`
 					})
+					setFname('');
+					setMname('');
+					setLname('');
+					setAddress('');
+					setAge('');
 					fetch('https://qmarketz.herokuapp.com/users/all').then((response) => {
 						return response.json();
 					}).then((users) => {
@@ -98,9 +103,11 @@ export default function UsersPage(){
 
 	const loadedUsers = users.map((newUsers) => {
 		return(
-			<div key={newUsers._id}>
-					<UsersForm id={newUsers._id} fname={newUsers.first_name} mname={newUsers.middle_name} lname={newUsers.last_name} address={newUsers.address} age={newUsers.age} update={() => {modalShow(newUsers._id)}} delete={() => {deleteUser(newUsers._id)}}/>	
-			</div>
+			<Col sm={12} md={4}>
+				<div key={newUsers._id}>
+						<UsersForm id={newUsers._id} fname={newUsers.first_name} mname={newUsers.middle_name} lname={newUsers.last_name} address={newUsers.address} age={newUsers.age} update={() => {modalShow(newUsers._id)}} delete={() => {deleteUser(newUsers._id)}}/>	
+				</div>
+			</Col>
 		)
 	})
 
