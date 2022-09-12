@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Form, Button, Row, Col} from 'react-bootstrap';
 
 export default function usersForm(props){
@@ -47,7 +47,7 @@ export default function usersForm(props){
 
 
 					      <Button variant="success" type="submit" className="mt-2">
-					        Submit
+					        Create
 					      </Button>
 					    </Form> 
 				</div>

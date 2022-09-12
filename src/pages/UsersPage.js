@@ -7,6 +7,7 @@ import UsersForm from '../components/UsersForm';
 export default function UsersPage(){
 	const [users, setUsers] = useState([]);
 	const [show, setShow] = useState(false);
+	const [removeBtn, setRemoveBtn] = useState(false);
 	const [id, setId] = useState('');
 	const [fname, setFname] = useState('');
 	const [mname, setMname] = useState('');
@@ -21,6 +22,15 @@ export default function UsersPage(){
 	function modalShow(id){
 		setId(id);
 		setShow(true);
+	}
+
+	function modalClose1(){
+		setRemoveBtn(false);
+	}
+
+	function modalShow1(id){
+		setId(id);
+		setRemoveBtn(true);
 		console.log(id)
 	}
 
@@ -37,6 +47,12 @@ export default function UsersPage(){
 			Swal.fire({
 				icon: 'warning',
 				text: 'All fields required'
+			})
+		}
+		else if(age < 1){
+			Swal.fire({
+				icon: 'warning',
+				text: 'Inavlid age'
 			})
 		}
 		else{
@@ -67,6 +83,7 @@ export default function UsersPage(){
 					setLname('');
 					setAddress('');
 					setAge('');
+					modalClose();
 					fetch('https://qmarketz.herokuapp.com/users/all').then((response) => {
 						return response.json();
 					}).then((users) => {
@@ -93,6 +110,8 @@ export default function UsersPage(){
 				icon: 'success',
 				text: `${removeUser.message}`
 			})
+			setId('');
+			modalClose1();
 			fetch('https://qmarketz.herokuapp.com/users/all').then((response) => {
 				return response.json();
 			}).then((users) => {
@@ -103,18 +122,36 @@ export default function UsersPage(){
 
 	const loadedUsers = users.map((newUsers) => {
 		return(
-			<Col sm={12} md={4}>
-				<div key={newUsers._id}>
-						<UsersForm id={newUsers._id} fname={newUsers.first_name} mname={newUsers.middle_name} lname={newUsers.last_name} address={newUsers.address} age={newUsers.age} update={() => {modalShow(newUsers._id)}} delete={() => {deleteUser(newUsers._id)}}/>	
-				</div>
-			</Col>
+			<UsersForm key={newUsers._id} id={newUsers._id} fname={newUsers.first_name} mname={newUsers.middle_name} lname={newUsers.last_name} address={newUsers.address} age={newUsers.age} update={() => {modalShow(newUsers._id)}} delete={() => {modalShow1(newUsers._id)}}/>				
 		)
 	})
 
 	return(
 		<>
 			<Row>
-				{loadedUsers}
+				<Col sm={12}>
+					<div className="table-div" style={{marginTop: '20px'}}>
+						<table className="usersForm-table" cellSpacing="0" cellPadding="0">
+							<thead>
+								<tr>
+									<th style={{textAlign: 'center', padding: '5px'}} colSpan={5}>Total user(s): {users.length}</th>
+								</tr>
+							</thead>
+							<thead>
+								<tr>
+									<th className="usersForm-thead">Id</th>
+									<th className="usersForm-thead">Name</th>
+									<th className="usersForm-thead">Address</th>
+									<th className="usersForm-thead">Age</th>
+									<th className="usersForm-thead">Options</th>
+								</tr>
+							</thead>
+							<tbody>
+								{loadedUsers}
+							</tbody>
+						</table>
+					</div>
+				</Col>
 			</Row>
 
 			<Modal show={show} onHide={modalClose}>
@@ -152,6 +189,18 @@ export default function UsersPage(){
 			        <Modal.Footer>
 			         <Button variant="outline-success" onClick={updateUser}>Save changes</Button>
 			          <Button variant="secondary" onClick={modalClose}>
+			            Cancel
+			          </Button>
+			        </Modal.Footer>
+			      </Modal>
+
+			<Modal show={removeBtn} onHide={modalClose1}>
+			        <Modal.Header closeButton>
+			          <Modal.Title>Remove user?</Modal.Title>
+			        </Modal.Header>
+			        <Modal.Footer>
+			         <Button variant="outline-danger" onClick={() => {deleteUser(id)}}>Remove</Button>
+			          <Button variant="secondary" onClick={modalClose1}>
 			            Cancel
 			          </Button>
 			        </Modal.Footer>

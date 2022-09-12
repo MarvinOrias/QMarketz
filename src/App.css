@@ -43,26 +43,34 @@
 
 /*users-div*/
 
-.users-div{
-  border: 1px solid gray;
-  width: 20rem;
-  height: 17rem;
-  animation: users-div-anm 2s;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 10px;
+.table-div{
+  overflow-x: auto;
 }
 
-.users-div:hover{
-  transform: scale(1.1);
-  box-shadow: 10px 10px 10px #3A5C65;
+.usersForm-table{
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 2px solid gray;
+  animation: usersForm-table 2s;
 }
 
-@keyframes users-div-anm{
+@keyframes usersForm-table{
   0%{
     opacity: 10%;
     transform: translateY(100vh);
   }
+}
+
+.usersForm-thead, .usersForm-td{
+  border: 2px solid gray;
+  text-align: center;
+  padding: 8px;
+}
+
+.usersForm-tr:hover{
+  background-color: #808080;
+  box-shadow: 1px 1px 10px #3A5C65;
 }
 
 /*create-users-div*/

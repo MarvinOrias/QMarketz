@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {Row} from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import {useNavigate} from 'react-router-dom';
 
@@ -40,6 +39,12 @@ export default function CreateUserPage(){
 			Swal.fire({
 				icon: 'warning',
 				text: 'All fields required'
+			})
+		}
+		else if(age < 1){
+			Swal.fire({
+				icon: 'warning',
+				text: 'Inavlid age'
 			})
 		}
 		else{
